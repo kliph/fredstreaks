@@ -1,0 +1,22 @@
+@import "colors";
+
+footer.mdl-mini-footer {
+  background-color: $purp;
+
+  .mdl-mini-footer__middle-section {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .mdl-logo {
+    margin-right: 0;
+  }
+
+  a {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    flex: 0 0 33.3333%;
+  }
+}

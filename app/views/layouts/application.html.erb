@@ -10,8 +10,14 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <%= render "shared/header"%>
+      <main class="mdl-layout__content">
+	<p class="notice"><%= notice %></p>
+	<p class="alert"><%= alert %></p>
+	<%= yield %>
+      </main>
+      <%= render "shared/footer"%>
+    </div>
   </body>
 </html>
