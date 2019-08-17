@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   root 'pages#main'
   get 'auth/:provider/callback', to: 'sessions#google_auth'
   get 'auth/failure', to: redirect('/')
-  resources :users, only: [:edit]
+  resources :users, only: [:edit, :show, :update]
 end

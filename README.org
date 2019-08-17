@@ -7,3 +7,4 @@
 - [ ] Add rubocop
 - [ ] Handle smaller screen sizes
   - [ ] test on phone
+- [ ] Add Team names migration and ability to edit on the User Update form
