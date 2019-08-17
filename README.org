@@ -1,6 +1,9 @@
-# README
-
-## Resources used
+* Resources used
 - https://github.com/zquestz/omniauth-google-oauth2
 - https://github.com/plataformatec/devise
 - https://github.com/plataformatec/devise/wiki/OmniAuth:-Overview
+
+* TODO
+- [ ] Add rubocop
+- [ ] Handle smaller screen sizes
+  - [ ] test on phone
