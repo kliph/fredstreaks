@@ -1,0 +1,15 @@
+<div class="dashboard__team-info">
+  <%= render 'shared/dashboard/pick' %>
+  <%= render 'shared/dashboard/team' %>
+  <%= render 'shared/dashboard/rank' %>
+</div>
+<section class="dashboard__links">
+  <div class="dashboard__quarter"></div>
+  <div class="dashboard__links--container">
+    <%= button_to 'fixtures', '#', class: 'mdl-button mdl-js-button mdl-js-ripple-effect' %>
+    <%= button_to 'standings', '#', class: 'mdl-button mdl-js-button mdl-js-ripple-effect' %>
+    <%= button_to 'update account', '#', class: 'mdl-button mdl-js-button mdl-js-ripple-effect' %>
+    <%= button_to 'sign out', destroy_user_session_path, method: :delete, class: 'mdl-button mdl-js-button mdl-js-ripple-effect' %>
+  </div>
+  <div class="dashboard__quarter"></div>
+</section>

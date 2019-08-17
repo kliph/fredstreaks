@@ -1,0 +1,38 @@
+.dashboard__team-info {
+  display: flex;
+  flex: 1;
+}
+
+.dashboard__team {
+  flex: 0 0 33.3333%;
+}
+
+.dashboard__pick {
+  flex: 0 0 33.3333%;
+}
+
+.dashboard__rank {
+  flex: 0 0 33.3333%;
+}
+
+.dashboard__links {
+  display: flex;
+  flex: 1;
+}
+
+.dashboard__quarter {
+  flex: 0 0 25%;
+}
+
+.dashboard__links--container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  flex: 0 0 50%;
+
+  form {
+    display: flex;
+    flex: 0 0 50%;
+    justify-content: space-around;
+  }
+}

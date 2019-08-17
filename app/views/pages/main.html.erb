@@ -1,11 +1,11 @@
 <% if user_signed_in? %>
   <h1>Hi<%= " #{current_user.name}"%></h1>
+  <%= render 'shared/dashboard'%>
 <% else  %>
   <h1>Hi</h1>
+  <div class="wrapper__sign-in">
+    <%= button_to(user_google_oauth2_omniauth_authorize_path, class: 'mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect button__sign-in') do %>
+      <span><%= render 'shared/google_icon' %>Sign in with Google</span>
+    <% end %>
+  </div>
 <% end %>
-<div class="wrapper__sign-in">
-  <%= button_to(user_google_oauth2_omniauth_authorize_path, class: 'mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect button__sign-in') do %>
-    <span><%= render 'shared/google_icon' %>Sign in with Google</span>
-  <% end %>
-</div>
-<div><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></div>
