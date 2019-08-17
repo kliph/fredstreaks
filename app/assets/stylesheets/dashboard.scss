@@ -59,12 +59,14 @@
 .dashboard__links--container {
   display: flex;
   flex-flow: row wrap;
-  justify-content: flex-start;
+  justify-content: center;
   flex: 0 0 50%;
 
-  form {
-    display: flex;
-    flex: 0 0 50%;
+  .mdl-button {
+    flex: 0 0 30%;
     justify-content: space-around;
+    height: auto;
+    padding: 1em;
+    line-height: 18px;
   }
 }
