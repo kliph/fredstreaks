@@ -28,6 +28,16 @@ RSpec.describe UsersController, type: [:controller, :request] do
       expect(user.reload.name).to eq(new_name)
     end
 
-    it "updates the user's team name"
+    it "updates the user's team" do
+      new_team = 'South Philly Cat Gang'
+      form_params = {
+        user: {
+          team: new_team
+        }
+      }
+
+      patch "/users/#{user.id}", params: form_params
+      expect(user.reload.team).to eq(new_team)
+    end
   end
 end

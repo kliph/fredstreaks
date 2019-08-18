@@ -6,6 +6,9 @@ FactoryBot.define do
     sequence :email do |n|
       "user#{n}@example.com"
     end
+    sequence :team do |n|
+      "Team Name #{n}"
+    end
     password { 'password' }
   end
 end
