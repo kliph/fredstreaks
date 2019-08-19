@@ -13,11 +13,28 @@
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
       <%= render "shared/header"%>
       <main class="mdl-layout__content">
-	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p>
 	<%= yield %>
       </main>
+      <div class="mdl-snackbar mdl-js-snackbar">
+	<div class="mdl-snackbar__text">
+	</div>
+	<button class="mdl-snackbar__action" type="button"></button>
+      </div>
       <%= render "shared/footer"%>
     </div>
   </body>
+  <script>
+   var notification = document.querySelector(".mdl-js-snackbar");
+   notification.addEventListener("mdl-componentupgraded", () => {
+
+     var messages = ["<%= notice %>", "<%= alert %>"].filter((s) => (s != ""));
+     var data = (message) => ({
+       message,
+       timeout: 5000
+     });
+     messages.map((message) => {
+       notification.MaterialSnackbar.showSnackbar(data(message));
+     });
+   });
+  </script>
 </html>
