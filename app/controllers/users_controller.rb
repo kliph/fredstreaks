@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
-  def show
-    redirect_to '/'
-  end
+  before_action :authenticate_user!
 
   def edit
     @user = User.find(params[:id])
