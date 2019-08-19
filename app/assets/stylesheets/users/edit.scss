@@ -1,0 +1,15 @@
+.edit-user {
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mdl-textfield {
+    display: inline-block;
+  }
+
+  input.mdl-button {
+    width: 90%;
+  }
+}

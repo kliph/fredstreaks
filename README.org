@@ -9,4 +9,4 @@
   - [ ] test on phone
 - [X] Add Team names migration and ability to edit on the User Update form
 - [ ] Secure updating User so you can only edit yourself
-- [ ] Style User Edit form
+- [X] Style User Edit form
