@@ -2,4 +2,9 @@
 
 header.mdl-layout__header {
   background-color: $purp;
+
+  a {
+    text-decoration: none;
+    color: white;
+  }
 }
