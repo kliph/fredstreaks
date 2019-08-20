@@ -8,5 +8,5 @@
 - [ ] Handle smaller screen sizes
   - [ ] test on phone
 - [X] Add Team names migration and ability to edit on the User Update form
-- [ ] Secure updating User so you can only edit yourself
+- [X] Secure updating User so you can only edit yourself
 - [X] Style User Edit form
