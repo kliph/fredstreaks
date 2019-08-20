@@ -3,6 +3,26 @@ require 'rails_helper'
 RSpec.describe UsersController, type: [:request] do
   include Devise::Test::IntegrationHelpers
 
+  def update_user(user, params)
+    patch "/users/#{user.id}", params: params
+  end
+
+  def make_user_params(params)
+    { user: params }
+  end
+
+  def update_name(user, name)
+    update_user(user, make_user_params({ name: name }))
+  end
+
+  def update_team(user, team)
+    update_user(user, make_user_params({ team: team }))
+  end
+
+  def update_email(user, email)
+    update_user(user, make_user_params({ email: email }))
+  end
+
   describe 'User Update' do
     let(:user) { create(:user) }
 
@@ -10,51 +30,26 @@ RSpec.describe UsersController, type: [:request] do
 
     it 'does not update email' do
       old_email = user.email
-      form_params = {
-        user: {
-          email: 'foo@example.com'
-        }
-      }
-
-      patch "/users/#{user.id}", params: form_params
+      update_email(user, 'a_new_email@example.com')
       expect(user.reload.email).to eq(old_email)
     end
 
     it "updates the user's name" do
       new_name = 'SPC'
-      form_params = {
-        user: {
-          name: new_name
-        }
-      }
-
-      patch "/users/#{user.id}", params: form_params
+      update_name(user, new_name)
       expect(user.reload.name).to eq(new_name)
     end
 
     it "updates the user's team" do
       new_team = 'South Philly Cat Gang'
-      form_params = {
-        user: {
-          team: new_team
-        }
-      }
-
-      patch "/users/#{user.id}", params: form_params
+      update_team(user, new_team)
       expect(user.reload.team).to eq(new_team)
     end
 
     it "prevents a user from editing someone else's information" do
       other_user = create(:user)
       expected_name = other_user.name
-
-      form_params = {
-        user: {
-          name: 'Foob'
-        }
-      }
-
-      patch "/users/#{other_user.id}", params: form_params
+      update_name(other_user, 'A Name')
       expect(other_user.reload.name).to eq(expected_name)
     end
   end
