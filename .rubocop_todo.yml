@@ -119,7 +119,6 @@ Style/ExpandPathArguments:
   Exclude:
     - 'bin/rails'
     - 'bin/rake'
-    - 'spec/rails_helper.rb'
 
 # Offense count: 50
 # Cop supports --auto-correct.
