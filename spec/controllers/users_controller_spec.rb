@@ -12,15 +12,15 @@ RSpec.describe UsersController, type: [:request] do
   end
 
   def update_name(user, name)
-    update_user(user, make_user_params({ name: name }))
+    update_user(user, make_user_params(name: name))
   end
 
   def update_team(user, team)
-    update_user(user, make_user_params({ team: team }))
+    update_user(user, make_user_params(team: team))
   end
 
   def update_email(user, email)
-    update_user(user, make_user_params({ email: email }))
+    update_user(user, make_user_params(email: email))
   end
 
   describe 'User Update' do
