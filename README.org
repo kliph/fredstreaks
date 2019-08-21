@@ -12,3 +12,4 @@
 - [X] Style User Edit form
 - [ ] Links in header
 - [ ] Sign out link in header when logged in
+- [ ] HTTPS
