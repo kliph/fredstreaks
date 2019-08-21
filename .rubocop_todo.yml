@@ -62,7 +62,8 @@ Metrics/AbcSize:
 # Configuration parameters: CountComments, ExcludedMethods.
 # ExcludedMethods: refine
 Metrics/BlockLength:
-  Max: 41
+  Exclude:
+    - 'spec/**/*'
 
 # Offense count: 1
 # Cop supports --auto-correct.
