@@ -16,15 +16,6 @@ Bundler/OrderedGems:
 
 # Offense count: 2
 # Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, IndentationWidth.
-# SupportedStyles: with_first_argument, with_fixed_indentation
-Layout/AlignArguments:
-  Exclude:
-    - 'bin/webpack'
-    - 'bin/webpack-dev-server'
-
-# Offense count: 2
-# Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: empty_lines, no_empty_lines
 Layout/EmptyLinesAroundBlockBody:
@@ -115,8 +106,6 @@ Style/StderrPuts:
 Style/StringLiterals:
   Exclude:
     - 'bin/spring'
-    - 'bin/webpack'
-    - 'bin/webpack-dev-server'
     - 'bin/yarn'
 
 # Offense count: 4
