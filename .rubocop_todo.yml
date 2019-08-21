@@ -91,19 +91,13 @@ Style/Documentation:
   Exclude:
     - 'spec/**/*'
     - 'test/**/*'
-    - 'app/controllers/application_controller.rb'
-    - 'app/controllers/pages_controller.rb'
-    - 'app/controllers/users/omniauth_callbacks_controller.rb'
-    - 'app/controllers/users_controller.rb'
-    - 'app/helpers/application_helper.rb'
-    - 'app/helpers/users_helper.rb'
-    - 'app/mailers/application_mailer.rb'
-    - 'app/models/application_record.rb'
-    - 'app/models/user.rb'
+    - 'app/controllers/**/*'
+    - 'app/helpers/**/*'
+    - 'app/models/**/*'
+    - 'app/mailers/**/*'
     - 'config/application.rb'
-    - 'db/migrate/20190410152531_devise_create_users.rb'
-    - 'db/migrate/20190410154750_add_name_to_users.rb'
-    - 'db/migrate/20190818012012_add_team_to_users.rb'
+    - 'db/migrate/**/*'
+
 
 # Offense count: 3
 # Cop supports --auto-correct.
