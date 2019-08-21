@@ -105,14 +105,6 @@ Style/Documentation:
     - 'db/migrate/20190410154750_add_name_to_users.rb'
     - 'db/migrate/20190818012012_add_team_to_users.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: compact, expanded
-Style/EmptyMethod:
-  Exclude:
-    - 'app/controllers/pages_controller.rb'
-
 # Offense count: 3
 # Cop supports --auto-correct.
 Style/ExpandPathArguments:
