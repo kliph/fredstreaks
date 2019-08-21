@@ -5,11 +5,13 @@
 
 * TODO
 - [X] Add rubocop
-- [ ] Handle smaller screen sizes
-  - [ ] test on phone
 - [X] Add Team names migration and ability to edit on the User Update form
 - [X] Secure updating User so you can only edit yourself
 - [X] Style User Edit form
 - [ ] Links in header
 - [ ] Sign out link in header when logged in
+- [ ] Standings page
+- [ ] GraphQL
 - [ ] HTTPS
+- [ ] Handle smaller screen sizes
+  - [ ] test on phone
