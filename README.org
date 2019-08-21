@@ -4,7 +4,7 @@
 - https://github.com/plataformatec/devise/wiki/OmniAuth:-Overview
 
 * TODO
-- [ ] Add rubocop
+- [X] Add rubocop
 - [ ] Handle smaller screen sizes
   - [ ] test on phone
 - [X] Add Team names migration and ability to edit on the User Update form
