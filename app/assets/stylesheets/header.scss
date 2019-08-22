@@ -7,4 +7,10 @@ header.mdl-layout__header {
     text-decoration: none;
     color: white;
   }
+
+  @media screen and (max-width: 630px) {
+    .mdl-navigation--only-tablet-or-larger {
+      display: none;
+    }
+  }
 }

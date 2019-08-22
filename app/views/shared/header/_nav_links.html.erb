@@ -1,0 +1,6 @@
+<%= link_to 'Fixtures', '#', class: 'mdl-button mdl-js-button mdl-js-ripple-effect' %>
+<%= link_to 'Standings', '#', class: 'mdl-button mdl-js-button mdl-js-ripple-effect' %>
+<%= link_to 'Gameweeks', '#', class: 'mdl-button mdl-js-button mdl-js-ripple-effect' %>
+<% if user_signed_in? %>
+  <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'mdl-button mdl-js-button mdl-js-ripple-effect' %>
+<% end %>

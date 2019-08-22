@@ -8,8 +8,8 @@
 - [X] Add Team names migration and ability to edit on the User Update form
 - [X] Secure updating User so you can only edit yourself
 - [X] Style User Edit form
-- [ ] Links in header
-- [ ] Sign out link in header when logged in
+- [X] Links in header (Fixtures, Standings, Gameweeks)
+- [X] Sign out link in header when logged in
 - [ ] Standings page
 - [ ] GraphQL
 - [ ] HTTPS

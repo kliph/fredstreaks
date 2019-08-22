@@ -1,5 +1,15 @@
 <header class="mdl-layout__header">
+  <div class="mdl-layout-icon"></div>
   <div class="mdl-layout__header-row">
     <span class="mdl-layout__title"><%= link_to 'threadstreaks', root_url %></span>
+    <div class="mdl-layout-spacer"></div>
+    <nav class="mdl-navigation mdl-navigation--only-tablet-or-larger">
+      <%= render 'shared/header/nav_links' %>
+    </nav>
   </div>
 </header>
+<div class="mdl-layout__drawer">
+  <nav class="mdl-navigation">
+    <%= render 'shared/header/nav_links' %>
+  </nav>
+</div>
