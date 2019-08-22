@@ -11,6 +11,8 @@
 - [X] Links in header (Fixtures, Standings, Gameweeks)
 - [X] Sign out link in header when logged in
 - [ ] Standings page
+- [ ] Gameweeks page
+- [ ] User show page (team history page)
 - [ ] GraphQL
 - [ ] HTTPS
 - [ ] Handle smaller screen sizes
