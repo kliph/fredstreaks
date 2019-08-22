@@ -17,3 +17,4 @@
 - [ ] HTTPS
 - [ ] Handle smaller screen sizes
   - [ ] test on phone
+- [ ] Might need to shorten headings on some tables on cell phones

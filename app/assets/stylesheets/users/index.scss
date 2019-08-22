@@ -1,0 +1,26 @@
+.standings {
+  table {
+    th {
+      width: 16.6%;
+    }
+  }
+
+  @media screen and (max-width: 630px) {
+    table {
+      table-layout: auto;
+    }
+
+    th {
+      font-size: 12px;
+      position: relative;
+    }
+
+    td {
+      font-size: 12px;
+    }
+  }
+
+  .zebra:nth-child(even) {
+    background-color: rgba(41, 0, 46, 0.23);
+  }
+}
