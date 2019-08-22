@@ -7,7 +7,7 @@
   <div class="dashboard__quarter"></div>
   <div class="dashboard__links--container">
     <%= link_to 'fixtures', '#', class: 'mdl-button mdl-js-button mdl-js-ripple-effect' %>
-    <%= link_to 'standings', '#', class: 'mdl-button mdl-js-button mdl-js-ripple-effect' %>
+    <%= link_to 'standings', users_path, class: 'mdl-button mdl-js-button mdl-js-ripple-effect' %>
     <%= link_to 'update account', edit_user_path(current_user), method: :get, class: 'mdl-button mdl-js-button mdl-js-ripple-effect' %>
     <%= link_to 'sign out', destroy_user_session_path, method: :delete, class: 'mdl-button mdl-js-button mdl-js-ripple-effect' %>
   </div>
