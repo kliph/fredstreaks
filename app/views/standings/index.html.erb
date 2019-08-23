@@ -1,0 +1,49 @@
+<div class="standings">
+  <h4>Standings</h4>
+  <table>
+    <thead>
+      <tr>
+	<th></th>
+	<th>
+	  Team
+	</th>
+	<th>
+	  User
+	</th>
+	<th>
+	  Points
+	</th>
+	<th>
+	  Streak of
+	</th>
+	<th>
+	  Current Pick
+	</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+	<tr class="zebra">
+	  <td>
+	    1
+	  </td>
+	  <td>
+	    <%= user.team %>
+	  </td>
+	  <td>
+	    <%= user.name %>
+	  </td>
+	  <td>
+	    0
+	  </td>
+	  <td>
+	    0
+	  </td>
+	  <td>
+	    Wolverhampton Wanderers FC
+	  </td>
+	</tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
