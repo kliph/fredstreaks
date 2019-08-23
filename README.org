@@ -13,7 +13,7 @@
 - [X] Standings page
 - [ ] Gameweeks page
 - [ ] User show page (team history page)
-- [ ] GraphQL
+- [ ] Fixtures
 - [ ] HTTPS
 - [ ] Handle smaller screen sizes
   - [ ] test on phone
