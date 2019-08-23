@@ -1,3 +1,5 @@
+@include 'colors';
+
 .standings {
   table {
     th {
@@ -21,6 +23,6 @@
   }
 
   .zebra:nth-child(even) {
-    background-color: rgba(41, 0, 46, 0.23);
+    background-color: rgba($purp, 0.23);
   }
 }
