@@ -15,3 +15,5 @@
  */
 
 @import "material";
+// Ensure our type stylings override Material Design's
+@import "type";

@@ -11,9 +11,11 @@
 - [X] Links in header (Fixtures, Standings, Gameweeks)
 - [X] Sign out link in header when logged in
 - [X] Standings page
-- [ ] Gameweeks page
+- [X] Gameweeks page
 - [ ] User show page (team history page)
 - [ ] Fixtures
+- [ ] Links to individual gameweeks (showing their fixtures)
+- [ ] Administrative controls for the gameweeks
 - [ ] HTTPS
 - [ ] Handle smaller screen sizes
   - [ ] test on phone
