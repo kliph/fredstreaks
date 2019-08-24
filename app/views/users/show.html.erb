@@ -1,1 +1,37 @@
 <h4><%= @user.team %></h4>
+<table>
+  <thead>
+    <tr>
+      <th>
+	Dates
+      </th>
+      <th>
+	Week
+      </th>
+      <th>
+	Team
+      </th>
+      <th>
+	Points
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user.results.each do |result| %>
+      <tr class="zebra">
+	<td>
+	  <%= result.date %>
+	</td>
+	<td>
+	  <%= result.gameweek.id %>
+	</td>
+	<td>
+	  <%= result.pick %>
+	</td>
+	<td>
+	  <%= result.points %>
+	</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
