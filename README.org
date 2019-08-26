@@ -12,7 +12,8 @@
 - [X] Sign out link in header when logged in
 - [X] Standings page
 - [X] Gameweeks page
-- [ ] User show page (team history page)
+- [X] User show page (team history page)
+- [ ] Dynamic Points and Streak and Rank calculation for standings
 - [ ] Fixtures
 - [ ] Links to individual gameweeks (showing their fixtures)
 - [ ] Administrative controls for the gameweeks

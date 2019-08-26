@@ -1,7 +1,10 @@
+@import "colors";
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
   margin: 0 auto;
+  width: 100%;
 
   th {
     text-align: center;
@@ -12,4 +15,23 @@ table {
     text-align: center;
     padding: 0.5em;
   }
+
+  @media screen and (max-width: 630px) {
+    table {
+      table-layout: auto;
+    }
+
+    th {
+      font-size: 12px;
+      position: relative;
+    }
+
+    td {
+      font-size: 12px;
+    }
+  }
+}
+
+.zebra:nth-child(even) {
+  background-color: rgba($purp, 0.23);
 }
