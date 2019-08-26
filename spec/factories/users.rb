@@ -11,5 +11,6 @@ FactoryBot.define do
     end
     password { 'password' }
     points { 0 }
+    current_pick { 'Arsenal FC' }
   end
 end
