@@ -14,6 +14,7 @@
 - [X] Gameweeks page
 - [X] User show page (team history page)
 - [ ] Dynamic Points and Streak and Rank calculation for standings
+- [ ] Don't allow users to see picks if they have not already made their pick
 - [ ] Fixtures
 - [ ] Links to individual gameweeks (showing their fixtures)
 - [ ] Administrative controls for the gameweeks
