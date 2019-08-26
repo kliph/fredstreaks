@@ -22,10 +22,10 @@
       </tr>
     </thead>
     <tbody>
-      <% @users.each do |user| %>
+      <% @ranked_users.each do |user| %>
 	<tr class="zebra">
 	  <td>
-	    1
+	    <%= user.rank %>
 	  </td>
 	  <td>
 	    <%= link_to user.team, user_path(user) %>

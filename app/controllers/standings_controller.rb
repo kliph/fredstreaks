@@ -1,5 +1,5 @@
 class StandingsController < ApplicationController
   def index
-    @users = User.all
+    @ranked_users = User.standings
   end
 end
