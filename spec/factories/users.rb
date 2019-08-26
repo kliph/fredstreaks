@@ -10,5 +10,6 @@ FactoryBot.define do
       "Team Name #{n}"
     end
     password { 'password' }
+    points { 0 }
   end
 end

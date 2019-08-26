@@ -7,6 +7,10 @@ class User < ApplicationRecord
 
   has_many :results, dependent: :destroy
 
+  scope :standings, lambda {
+    find_by_sql('SELECT *, rank() OVER (ORDER BY points DESC) FROM users')
+  }
+
   def self.from_omniauth(access_token)
     data = access_token.info
     user = User.find_by(email: data['email']) ||
