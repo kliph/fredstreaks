@@ -1,3 +1,5 @@
 class PagesController < ApplicationController
-  def main; end
+  def main
+    @rank = User.get_rank(current_user)
+  end
 end
