@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include UserConcern
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -7,8 +9,14 @@ class User < ApplicationRecord
 
   has_many :results, dependent: :destroy
 
+  STANDINGS_COLUMNS = %w[id team name points current_streak current_pick].freeze
+
   scope :standings, lambda {
-    find_by_sql('SELECT *, rank() OVER (ORDER BY points DESC) FROM users')
+    standings_query(STANDINGS_COLUMNS)
+  }
+
+  scope :standings_without_current_pick, lambda {
+    standings_query(STANDINGS_COLUMNS - ['current_pick'])
   }
 
   scope :get_rank, lambda { |user|

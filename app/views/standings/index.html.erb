@@ -40,7 +40,7 @@
 	    <%= user.current_streak %>
 	  </td>
 	  <td>
-	    <%= user.current_pick %>
+	    <%= user.try(:current_pick) %>
 	  </td>
 	</tr>
       <% end %>
