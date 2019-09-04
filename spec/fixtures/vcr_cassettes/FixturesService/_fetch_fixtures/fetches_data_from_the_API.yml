@@ -1,0 +1,104 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.football-data.org/v2/competitions/2021/matches?matchday=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.15.4
+      X-Response-Control:
+      - minified
+      X-Auth-Token:
+      - "<FOOTBALL_DATA_AUTH_TOKEN>"
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      server:
+      - nginx/1.6.2
+      date:
+      - Wed, 04 Sep 2019 14:56:27 GMT
+      content-type:
+      - application/json;charset=UTF-8
+      transfer-encoding:
+      - chunked
+      connection:
+      - close
+      x-application-context:
+      - application:production
+      x-requests-available-minute:
+      - '9'
+      x-requestcounter-reset:
+      - '60'
+      x-api-version:
+      - v2
+      access-control-allow-origin:
+      - "*"
+      access-control-allow-credentials:
+      - 'true'
+      access-control-allow-methods:
+      - GET
+      x-authenticated-client:
+      - Soccer Thread
+      content-language:
+      - en-US
+    body:
+      encoding: ASCII-8BIT
+      string: '{"count":10,"filters":{"matchday":"1"},"competition":{"id":2021,"area":{"id":2072,"name":"England"},"name":"Premier
+        League","code":"PL","plan":"TIER_ONE","lastUpdated":"2019-09-02T17:10:03Z"},"matches":[{"id":264341,"season":{"id":468,"startDate":"2019-08-09","endDate":"2020-05-17","currentMatchday":5},"utcDate":"2019-08-09T19:00:00Z","status":"FINISHED","matchday":1,"stage":"REGULAR_SEASON","group":"Regular
+        Season","lastUpdated":"2019-08-10T06:35:46Z","score":{"winner":"HOME_TEAM","duration":"REGULAR","fullTime":{"homeTeam":4,"awayTeam":1},"halfTime":{"homeTeam":4,"awayTeam":0},"extraTime":{"homeTeam":null,"awayTeam":null},"penalties":{"homeTeam":null,"awayTeam":null}},"homeTeam":{"id":64,"name":"Liverpool
+        FC"},"awayTeam":{"id":68,"name":"Norwich City FC"},"referees":[{"id":11605,"name":"Michael
+        Oliver","nationality":null},{"id":11564,"name":"Stuart Burt","nationality":null},{"id":11488,"name":"Simon
+        Bennett","nationality":null},{"id":11503,"name":"Graham Scott","nationality":null},{"id":11610,"name":"Andre
+        Marriner","nationality":null}]},{"id":264342,"season":{"id":468,"startDate":"2019-08-09","endDate":"2020-05-17","currentMatchday":5},"utcDate":"2019-08-10T11:30:00Z","status":"FINISHED","matchday":1,"stage":"REGULAR_SEASON","group":"Regular
+        Season","lastUpdated":"2019-08-10T17:52:43Z","score":{"winner":"AWAY_TEAM","duration":"REGULAR","fullTime":{"homeTeam":0,"awayTeam":5},"halfTime":{"homeTeam":0,"awayTeam":1},"extraTime":{"homeTeam":null,"awayTeam":null},"penalties":{"homeTeam":null,"awayTeam":null}},"homeTeam":{"id":563,"name":"West
+        Ham United FC"},"awayTeam":{"id":65,"name":"Manchester City FC"},"referees":[{"id":11575,"name":"Mike
+        Dean","nationality":null},{"id":11576,"name":"Darren Cann","nationality":null},{"id":11431,"name":"Daniel
+        Robathan","nationality":null},{"id":9382,"name":"Gavin Ward","nationality":null},{"id":11556,"name":"David
+        Coote","nationality":null}]},{"id":264344,"season":{"id":468,"startDate":"2019-08-09","endDate":"2020-05-17","currentMatchday":5},"utcDate":"2019-08-10T14:00:00Z","status":"FINISHED","matchday":1,"stage":"REGULAR_SEASON","group":"Regular
+        Season","lastUpdated":"2019-08-10T22:13:59Z","score":{"winner":"HOME_TEAM","duration":"REGULAR","fullTime":{"homeTeam":3,"awayTeam":0},"halfTime":{"homeTeam":0,"awayTeam":0},"extraTime":{"homeTeam":null,"awayTeam":null},"penalties":{"homeTeam":null,"awayTeam":null}},"homeTeam":{"id":328,"name":"Burnley
+        FC"},"awayTeam":{"id":340,"name":"Southampton FC"},"referees":[{"id":11503,"name":"Graham
+        Scott","nationality":null},{"id":11424,"name":"Neil Davies","nationality":null},{"id":11437,"name":"Andy
+        Garratt","nationality":null},{"id":9381,"name":"Ross Joyce","nationality":null},{"id":11309,"name":"Peter
+        Bankes","nationality":null}]},{"id":264345,"season":{"id":468,"startDate":"2019-08-09","endDate":"2020-05-17","currentMatchday":5},"utcDate":"2019-08-10T14:00:00Z","status":"FINISHED","matchday":1,"stage":"REGULAR_SEASON","group":"Regular
+        Season","lastUpdated":"2019-08-10T22:15:25Z","score":{"winner":"DRAW","duration":"REGULAR","fullTime":{"homeTeam":0,"awayTeam":0},"halfTime":{"homeTeam":0,"awayTeam":0},"extraTime":{"homeTeam":null,"awayTeam":null},"penalties":{"homeTeam":null,"awayTeam":null}},"homeTeam":{"id":354,"name":"Crystal
+        Palace FC"},"awayTeam":{"id":62,"name":"Everton FC"},"referees":[{"id":11567,"name":"Jonathan
+        Moss","nationality":null},{"id":11531,"name":"Marc Perry","nationality":null},{"id":11480,"name":"Eddie
+        Smart","nationality":null},{"id":11536,"name":"Craig Hicks","nationality":null},{"id":11327,"name":"John
+        Brooks","nationality":null}]},{"id":264346,"season":{"id":468,"startDate":"2019-08-09","endDate":"2020-05-17","currentMatchday":5},"utcDate":"2019-08-10T14:00:00Z","status":"FINISHED","matchday":1,"stage":"REGULAR_SEASON","group":"Regular
+        Season","lastUpdated":"2019-08-10T20:11:34Z","score":{"winner":"AWAY_TEAM","duration":"REGULAR","fullTime":{"homeTeam":0,"awayTeam":3},"halfTime":{"homeTeam":0,"awayTeam":1},"extraTime":{"homeTeam":null,"awayTeam":null},"penalties":{"homeTeam":null,"awayTeam":null}},"homeTeam":{"id":346,"name":"Watford
+        FC"},"awayTeam":{"id":397,"name":"Brighton & Hove Albion FC"},"referees":[{"id":11585,"name":"Craig
+        Pawson","nationality":null},{"id":11495,"name":"Ian Hussin","nationality":null},{"id":11586,"name":"Richard
+        West","nationality":null},{"id":11492,"name":"Peter Wright","nationality":null},{"id":11423,"name":"Andy
+        Madley","nationality":null}]},{"id":264347,"season":{"id":468,"startDate":"2019-08-09","endDate":"2020-05-17","currentMatchday":5},"utcDate":"2019-08-10T14:00:00Z","status":"FINISHED","matchday":1,"stage":"REGULAR_SEASON","group":"Regular
+        Season","lastUpdated":"2019-08-10T20:06:07Z","score":{"winner":"DRAW","duration":"REGULAR","fullTime":{"homeTeam":1,"awayTeam":1},"halfTime":{"homeTeam":0,"awayTeam":0},"extraTime":{"homeTeam":null,"awayTeam":null},"penalties":{"homeTeam":null,"awayTeam":null}},"homeTeam":{"id":1044,"name":"AFC
+        Bournemouth"},"awayTeam":{"id":356,"name":"Sheffield United FC"},"referees":[{"id":11487,"name":"Kevin
+        Friend","nationality":null},{"id":11444,"name":"Matthew Wilkes","nationality":null},{"id":11425,"name":"Nicholas
+        Hopton","nationality":null},{"id":11497,"name":"Charles Breakspear","nationality":null},{"id":11479,"name":"Lee
+        Mason","nationality":null}]},{"id":264348,"season":{"id":468,"startDate":"2019-08-09","endDate":"2020-05-17","currentMatchday":5},"utcDate":"2019-08-10T16:30:00Z","status":"FINISHED","matchday":1,"stage":"REGULAR_SEASON","group":"Regular
+        Season","lastUpdated":"2019-08-11T06:55:03Z","score":{"winner":"HOME_TEAM","duration":"REGULAR","fullTime":{"homeTeam":3,"awayTeam":1},"halfTime":{"homeTeam":0,"awayTeam":1},"extraTime":{"homeTeam":null,"awayTeam":null},"penalties":{"homeTeam":null,"awayTeam":null}},"homeTeam":{"id":73,"name":"Tottenham
+        Hotspur FC"},"awayTeam":{"id":58,"name":"Aston Villa FC"},"referees":[{"id":11443,"name":"Chris
+        Kavanagh","nationality":null},{"id":11438,"name":"Dan Cook","nationality":null},{"id":98555,"name":null,"nationality":null},{"id":11396,"name":"Tim
+        Robinson","nationality":null},{"id":11494,"name":"Stuart Attwell","nationality":null}]},{"id":264343,"season":{"id":468,"startDate":"2019-08-09","endDate":"2020-05-17","currentMatchday":5},"utcDate":"2019-08-11T13:00:00Z","status":"FINISHED","matchday":1,"stage":"REGULAR_SEASON","group":"Regular
+        Season","lastUpdated":"2019-08-12T10:45:05Z","score":{"winner":"DRAW","duration":"REGULAR","fullTime":{"homeTeam":0,"awayTeam":0},"halfTime":{"homeTeam":0,"awayTeam":0},"extraTime":{"homeTeam":null,"awayTeam":null},"penalties":{"homeTeam":null,"awayTeam":null}},"homeTeam":{"id":338,"name":"Leicester
+        City FC"},"awayTeam":{"id":76,"name":"Wolverhampton Wanderers FC"},"referees":[{"id":11610,"name":"Andre
+        Marriner","nationality":null},{"id":11611,"name":"Scott Ledger","nationality":null},{"id":11504,"name":"Simon
+        Long","nationality":null},{"id":11423,"name":"Andy Madley","nationality":null},{"id":11567,"name":"Jonathan
+        Moss","nationality":null}]},{"id":264349,"season":{"id":468,"startDate":"2019-08-09","endDate":"2020-05-17","currentMatchday":5},"utcDate":"2019-08-11T13:00:00Z","status":"FINISHED","matchday":1,"stage":"REGULAR_SEASON","group":"Regular
+        Season","lastUpdated":"2019-08-12T10:45:05Z","score":{"winner":"AWAY_TEAM","duration":"REGULAR","fullTime":{"homeTeam":0,"awayTeam":1},"halfTime":{"homeTeam":0,"awayTeam":0},"extraTime":{"homeTeam":null,"awayTeam":null},"penalties":{"homeTeam":null,"awayTeam":null}},"homeTeam":{"id":67,"name":"Newcastle
+        United FC"},"awayTeam":{"id":57,"name":"Arsenal FC"},"referees":[{"id":11551,"name":"Martin
+        Atkinson","nationality":null},{"id":11530,"name":"Lee Betts","nationality":null},{"id":11606,"name":"Constantine
+        Hatzidakis","nationality":null},{"id":11469,"name":"Darren England","nationality":null},{"id":11556,"name":"David
+        Coote","nationality":null}]},{"id":264350,"season":{"id":468,"startDate":"2019-08-09","endDate":"2020-05-17","currentMatchday":5},"utcDate":"2019-08-11T15:30:00Z","status":"FINISHED","matchday":1,"stage":"REGULAR_SEASON","group":"Regular
+        Season","lastUpdated":"2019-08-12T10:50:07Z","score":{"winner":"HOME_TEAM","duration":"REGULAR","fullTime":{"homeTeam":4,"awayTeam":0},"halfTime":{"homeTeam":1,"awayTeam":0},"extraTime":{"homeTeam":null,"awayTeam":null},"penalties":{"homeTeam":null,"awayTeam":null}},"homeTeam":{"id":66,"name":"Manchester
+        United FC"},"awayTeam":{"id":61,"name":"Chelsea FC"},"referees":[{"id":11580,"name":"Anthony
+        Taylor","nationality":null},{"id":11581,"name":"Gary Beswick","nationality":null},{"id":11615,"name":"Adam
+        Nunn","nationality":null},{"id":11479,"name":"Lee Mason","nationality":null},{"id":11494,"name":"Stuart
+        Attwell","nationality":null}]}]}'
+    http_version: 
+  recorded_at: Wed, 04 Sep 2019 14:56:27 GMT
+recorded_with: VCR 5.0.0
