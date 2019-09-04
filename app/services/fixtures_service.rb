@@ -4,6 +4,7 @@ module FixturesService
 
   def self.fetch_fixtures
     response = Faraday.get(URL, { matchday: Gameweek.last.id }, 'X-Response-Control' => 'minified', 'X-Auth-Token' => ENV.fetch('FOOTBALL_DATA_AUTH_TOKEN'))
-    JSON.parse(response.body).deep_transform_keys { |k| k.to_s.underscore.to_sym }
+    transformed_response = JSON.parse(response.body).deep_transform_keys { |k| k.to_s.underscore.to_sym }
+    transformed_response[:matches]
   end
 end
