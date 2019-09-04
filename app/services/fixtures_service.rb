@@ -9,12 +9,12 @@ module FixturesService
       { matchday: Gameweek.last.id },
       'X-Response-Control' => 'minified', 'X-Auth-Token' => ENV.fetch('FOOTBALL_DATA_AUTH_TOKEN')
     )
-    transformed_response = JSON.parse(response.body).deep_transform_keys { |k| k.to_s.underscore.to_sym }
-    transformed_response[:matches]
+    transformed_response = JSON.parse(response.body).deep_transform_keys { |k| k.to_s.underscore }
+    transformed_response['matches']
   end
 
   def self.all_finished?(matches)
-    statuses = matches.pluck(:status)
+    statuses = matches.pluck('status')
     statuses.all? do |status|
       matches_at_least_one(status, FINISHED_STATUSES)
     end
