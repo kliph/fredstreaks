@@ -1,0 +1,29 @@
+<h4>Fixtures</h4>
+<h5>Gameweek: <%= @gameweek_id %></h5>
+<table>
+  <thead>
+    <th>
+      Home
+    </th>
+    <th>
+    </th>
+    <th>
+      Away
+    </th>
+  </thead>
+  <tbody>
+    <% @fixture&.matches.each do |match| %>
+      <tr>
+	<td>
+	  <%= match['home_team']['name'] %>
+	</td>
+	<td>
+	  vs
+	</td>
+	<td>
+	  <%= match['away_team']['name'] %>
+	</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
