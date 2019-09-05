@@ -20,6 +20,11 @@ module FixturesService
     end
   end
 
+  def self.save_fixture_if_updated!(matches)
+    current_fixture = Fixture.find_or_initialize_by(gameweek: Gameweek.last)
+    current_fixture.update(matches: matches) if matches != current_fixture.matches
+  end
+
   private_class_method def self.matches_at_least_one(status, comparison_statuses)
     comparison_statuses.any? { |comparison_status| status == comparison_status }
   end

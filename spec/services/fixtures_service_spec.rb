@@ -23,10 +23,27 @@ RSpec.describe FixturesService do
     end
   end
 
-  describe '#save_fixtures!' do
-    it 'does not update the fixture when the fixture is not updated'
+  describe '#save_fixture_if_updated!' do
+    describe 'with a new gameweek' do
+      it 'creates the fixture if there is not one already in the database' do
+        gameweek = create :gameweek
+        FixturesService.save_fixture_if_updated!(matches)
+        expect(Fixture.last.gameweek).to eq gameweek
+        expect(Fixture.last.matches).to eq matches
+      end
+    end
 
-    it 'updates the fixture when the fixture is updated'
+    it 'does not update the fixture when the fixture is not updated' do
+      last_updated_at = fixture.updated_at
+      FixturesService.save_fixture_if_updated!(matches)
+      expect(fixture.reload.updated_at).to eq last_updated_at
+    end
+
+    it 'updates the fixture when the fixture is updated' do
+      last_updated_at = fixture.updated_at
+      FixturesService.save_fixture_if_updated!(postponed_matches)
+      expect(fixture.reload.updated_at).not_to eq last_updated_at
+    end
   end
 
   describe '#all_finished?' do
