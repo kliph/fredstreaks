@@ -19,7 +19,7 @@
 - [-] Fixtures
   - [X] Fetch fixtures
   - [X] Save them if they are updated
-  - [ ] Show last updated timestamp on the page
+  - [X] Show last updated timestamp on the page
   - [ ] Score fixtures when all games are finished for the week
 - [ ] Links to individual gameweeks (showing their fixtures)
 - [ ] Administrative controls for the gameweeks
