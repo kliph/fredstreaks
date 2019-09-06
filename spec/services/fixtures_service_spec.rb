@@ -18,8 +18,8 @@ RSpec.describe FixturesService do
   end
 
   describe '#fetch_fixtures' do
-    it 'fetches data from the API', :vcr do
-      expect(FixturesService.fetch_fixtures).to eq(matches)
+    it 'fetches data from the API', vcr: { record: :new_episodes } do
+      expect(FixturesService.fetch_fixtures(1)).to eq(matches)
     end
   end
 

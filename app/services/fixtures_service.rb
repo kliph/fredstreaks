@@ -3,10 +3,10 @@ module FixturesService
   URL = 'http://api.football-data.org/v2/competitions/2021/matches'.freeze
   FINISHED_STATUSES = %w[FINISHED CANCELED POSTPONED].freeze
 
-  def self.fetch_fixtures
+  def self.fetch_fixtures(gameweek_id)
     response = Faraday.get(
       URL,
-      { matchday: Gameweek.last.id },
+      { matchday: gameweek_id },
       'X-Response-Control' => 'minified', 'X-Auth-Token' => ENV.fetch('FOOTBALL_DATA_AUTH_TOKEN')
     )
     transformed_response = JSON.parse(response.body).deep_transform_keys { |k| k.to_s.underscore }
