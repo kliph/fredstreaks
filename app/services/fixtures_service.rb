@@ -15,7 +15,7 @@ module FixturesService
 
   def self.all_finished?(matches)
     statuses = matches.pluck('status')
-    statuses.all? do |status|
+    statuses.present? && statuses.all? do |status|
       matches_at_least_one(status, FINISHED_STATUSES)
     end
   end

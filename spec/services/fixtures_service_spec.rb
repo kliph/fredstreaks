@@ -55,5 +55,10 @@ RSpec.describe FixturesService do
     it 'returns false when all fixtures are not finished' do
       expect(FixturesService.all_finished?(unfinished_matches)).to be false
     end
+
+    it 'returns false when it receives and empty array' do
+      expect(FixturesService.all_finished?([])).to be false
+    end
+  end
   end
 end
