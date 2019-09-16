@@ -25,7 +25,46 @@ module FixturesService
     current_fixture.update(matches: matches) if matches != current_fixture.matches
   end
 
+  def self.score_finished_gameweek!(matches:, gameweek:, user:, date:)
+    winners = matches_to_winners_set(matches)
+    result_params = {
+      user: user,
+      pick: user.current_pick,
+      gameweek: gameweek,
+      date: date
+    }
+    points_to_award = 0
+    updated_streak = 0
+    if winners.include?(user.current_pick)
+      incremented_streak = user.current_streak + 1
+      points_to_award = incremented_streak
+      updated_streak = incremented_streak
+    end
+    result_params[:points] = points_to_award
+    Result.create result_params
+    user.points += points_to_award
+    user.current_pick = nil
+    user.current_streak = updated_streak
+    user.save
+  end
+
+  def self.increment_gameweek!
+    Gameweek.create
+  end
+
   private_class_method def self.matches_at_least_one(status, comparison_statuses)
     comparison_statuses.any? { |comparison_status| status == comparison_status }
+  end
+
+  private_class_method def self.get_winner_or_nil(match)
+    winner = match.fetch('score').fetch('winner').downcase
+    winning_team = winner != 'draw' ? match.fetch(winner).fetch('name') : nil
+    winning_team
+  end
+
+  private_class_method def self.matches_to_winners_set(matches)
+    matches.map do |match|
+      get_winner_or_nil(match)
+    end.compact
   end
 end

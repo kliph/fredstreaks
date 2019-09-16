@@ -60,5 +60,61 @@ RSpec.describe FixturesService do
       expect(FixturesService.all_finished?([])).to be false
     end
   end
+
+  describe '#score_finished_gameweek!' do
+    let(:winning_pick) { 'Arsenal FC' }
+    let!(:user) { create :user, current_pick: winning_pick }
+    let(:losing_pick) { 'Norwich City FC' }
+    let!(:user_with_losing_pick) { create :user, current_pick: losing_pick }
+    let(:date) { Date.parse(matches.last.fetch('utc_date')) }
+    let(:gameweek) { create :gameweek }
+
+    it 'creates a new result' do
+      expect { FixturesService.score_finished_gameweek!(matches: matches, gameweek: gameweek, user: user, date: date) }.to change { Result.count }.by(1)
+    end
+
+    describe 'with a winning pick' do
+      it "updates the User's score" do
+        expect { FixturesService.score_finished_gameweek!(matches: matches, gameweek: gameweek, user: user, date: date) }.to change { user.points }.by(1)
+      end
+
+      it "updates the User's current streak" do
+        expect { FixturesService.score_finished_gameweek!(matches: matches, gameweek: gameweek, user: user, date: date) }.to change { user.current_streak }.by(1)
+      end
+
+      it "resets the User's current pick" do
+        FixturesService.score_finished_gameweek!(matches: matches, gameweek: gameweek, user: user, date: date)
+        expect(user.reload.current_pick).to be_nil
+      end
+
+      it 'creates a Result with the proper data' do
+        FixturesService.score_finished_gameweek!(matches: matches, gameweek: gameweek, user: user, date: date)
+        result = Result.find_by(date: date, user: user, gameweek: gameweek)
+        expect(result.points).to eq 1
+        expect(result.pick).to eq winning_pick
+      end
+    end
+
+    describe 'with a losing pick' do
+      it "updates the User's score" do
+        expect { FixturesService.score_finished_gameweek!(matches: matches, gameweek: gameweek, user: user_with_losing_pick, date: date) }.to change { user_with_losing_pick.points }.by(0)
+      end
+
+      it "updates the User's current streak" do
+        expect { FixturesService.score_finished_gameweek!(matches: matches, gameweek: gameweek, user: user_with_losing_pick, date: date) }.to change { user_with_losing_pick.current_streak }.by(0)
+      end
+
+      it "resets the User's current pick" do
+        FixturesService.score_finished_gameweek!(matches: matches, gameweek: gameweek, user: user_with_losing_pick, date: date)
+        expect(user_with_losing_pick.reload.current_pick).to be_nil
+      end
+
+      it 'creates a Result with the proper data' do
+        FixturesService.score_finished_gameweek!(matches: matches, gameweek: gameweek, user: user_with_losing_pick, date: date)
+        result = Result.find_by(date: date, user: user_with_losing_pick, gameweek: gameweek)
+        expect(result.points).to eq 0
+        expect(result.pick).to eq losing_pick
+      end
+    end
   end
 end
