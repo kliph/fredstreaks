@@ -117,4 +117,12 @@ RSpec.describe FixturesService do
       end
     end
   end
+
+  describe '#increment_gameweek!' do
+    it 'increments the gameweek' do
+      create :gameweek, week: 99
+      expect { FixturesService.increment_gameweek! }.to change { Gameweek.count }.by(1)
+      expect(Gameweek.last.week).to eq(100)
+    end
+  end
 end

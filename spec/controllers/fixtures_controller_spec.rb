@@ -56,6 +56,7 @@ RSpec.describe FixturesController, type: :controller do
         allow(FixturesService).to receive(:increment_gameweek!)
         get :index
         expect(FixturesService).not_to have_received(:increment_gameweek!)
+        expect(Gameweek.last.week).to eq(gameweek.week)
       end
     end
   end
