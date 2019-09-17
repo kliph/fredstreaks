@@ -48,9 +48,15 @@ module FixturesService
     user.save
   end
 
-  def self.increment_gameweek!
-    previous_week = Gameweek.last.week
-    Gameweek.create(week: previous_week + 1)
+  def self.increment_gameweek!(gameweek)
+    Gameweek.create(week: gameweek.week + 1)
+  end
+
+  def self.score_all_picks_and_increment_gameweek!(matches:, gameweek:)
+    User.all.each do |user|
+      FixturesService.score_finished_gameweek!(matches: matches, gameweek: gameweek, user: user, date: Date.new)
+    end
+    FixturesService.increment_gameweek!(gameweek)
   end
 
   private_class_method def self.matches_at_least_one(status, comparison_statuses)

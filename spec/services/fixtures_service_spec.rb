@@ -118,11 +118,36 @@ RSpec.describe FixturesService do
     end
   end
 
-  describe '#increment_gameweek!' do
+  describe '#increment_current_gameweek!' do
+    let!(:gameweek) { create :gameweek, week: 99 }
     it 'increments the gameweek' do
-      create :gameweek, week: 99
-      expect { FixturesService.increment_gameweek! }.to change { Gameweek.count }.by(1)
+      expect { FixturesService.increment_gameweek!(gameweek) }.to change { Gameweek.count }.by(1)
       expect(Gameweek.last.week).to eq(100)
+    end
+  end
+
+  describe '#score_all_picks_and_increment_gameweek!' do
+    let!(:user) { create :user }
+    let(:matches) { create(:fixture).matches }
+    let(:gameweek) { create :gameweek }
+    let(:date) { Date.parse(matches.last.fetch('utc_date')) }
+    let(:params) do
+      {
+        matches: matches,
+        gameweek: gameweek
+      }
+    end
+
+    it 'calls score_finished_gameweek! with the appropriate data' do
+      allow(FixturesService).to receive(:score_finished_gameweek!)
+      FixturesService.score_all_picks_and_increment_gameweek!(params)
+      expect(FixturesService).to have_received(:score_finished_gameweek!)
+    end
+
+    it 'calls increment_gameweek!' do
+      allow(FixturesService).to receive(:increment_gameweek!)
+      FixturesService.score_all_picks_and_increment_gameweek!(params)
+      expect(FixturesService).to have_received(:increment_gameweek!)
     end
   end
 end
