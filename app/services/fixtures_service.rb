@@ -27,25 +27,11 @@ module FixturesService
 
   def self.score_finished_gameweek!(matches:, gameweek:, user:, date:)
     winners = matches_to_winners_set(matches)
-    result_params = {
-      user: user,
-      pick: user.current_pick,
-      gameweek: gameweek,
-      date: date
-    }
-    points_to_award = 0
-    updated_streak = 0
-    if winners.include?(user.current_pick)
-      incremented_streak = user.current_streak + 1
-      points_to_award = incremented_streak
-      updated_streak = incremented_streak
-    end
+    result_params = make_result_params(user: user, gameweek: gameweek, date: date)
+    points_to_award, updated_streak = calculate_streak(user, winners)
     result_params[:points] = points_to_award
     Result.create result_params
-    user.points += points_to_award
-    user.current_pick = nil
-    user.current_streak = updated_streak
-    user.save
+    update_user_for_next_gameweek!(user, points_to_award, updated_streak)
   end
 
   def self.increment_gameweek!(gameweek)
@@ -73,5 +59,32 @@ module FixturesService
     matches.map do |match|
       get_winner_or_nil(match)
     end.compact
+  end
+
+  private_class_method def self.make_result_params(user:, gameweek:, date:)
+    {
+      user: user,
+      pick: user.current_pick,
+      gameweek: gameweek,
+      date: date
+    }
+  end
+
+  private_class_method def self.update_user_for_next_gameweek!(user, points_to_award, updated_streak)
+    user.points += points_to_award
+    user.current_pick = nil
+    user.current_streak = updated_streak
+    user.save
+  end
+
+  private_class_method def self.calculate_streak(user, winners)
+    points_to_award = 0
+    updated_streak = 0
+    if winners.include?(user.current_pick)
+      incremented_streak = user.current_streak + 1
+      points_to_award = incremented_streak
+      updated_streak = incremented_streak
+    end
+    [points_to_award, updated_streak]
   end
 end
