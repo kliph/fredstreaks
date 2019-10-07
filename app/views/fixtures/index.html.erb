@@ -16,19 +16,13 @@
       <% @fixture&.matches.each do |match| %>
 	<tr>
 	  <td>
-	    <%= f.label "current_pick_#{match['home_team']['name'].parameterize.underscore}".to_sym do %>
-	      <%= f.radio_button(:current_pick, match['home_team']['name']) %>
-	      <%= match['home_team']['name'] %>
-	    <% end %>
+	    <%= render partial: "fixture_button", locals: {team: match['home_team']['name'], f: f}%>
 	  </td>
 	  <td>
 	    vs
 	  </td>
 	  <td>
-	    <%= f.label "current_pick_#{match['away_team']['name'].parameterize.underscore}".to_sym do %>
-	      <%= f.radio_button(:current_pick, match['away_team']['name']) %>
-	      <%= match['away_team']['name'] %>
-	    <% end %>
+	    <%= render partial: "fixture_button", locals: {team: match['away_team']['name'], f: f}%>
 	  </td>
 	</tr>
       <% end %>
