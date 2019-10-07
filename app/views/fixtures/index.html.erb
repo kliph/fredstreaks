@@ -1,32 +1,35 @@
 <h4>Fixtures</h4>
 <h5>Gameweek: <%= @week %></h5>
-<table>
-  <thead>
-    <th>
-      Home
-    </th>
-    <th>
-    </th>
-    <th>
-      Away
-    </th>
-  </thead>
-  <tbody>
-    <%= form_with model: current_user do |f| %>
+<%= form_with local: true do |f| %>
+  <table>
+    <thead>
+      <th>
+	Home
+      </th>
+      <th>
+      </th>
+      <th>
+	Away
+      </th>
+    </thead>
+    <tbody>
       <% @fixture&.matches.each do |match| %>
 	<tr>
 	  <td>
-	    <%= render partial: "fixture_button", locals: {team: match['home_team']['name'], f: f}%>
+	    <%= render partial: "fixture_button", locals: {team: match['home_team']['name'], f: f, current_pick: @current_pick}%>
 	  </td>
 	  <td>
 	    vs
 	  </td>
 	  <td>
-	    <%= render partial: "fixture_button", locals: {team: match['away_team']['name'], f: f}%>
+	    <%= render partial: "fixture_button", locals: {team: match['away_team']['name'], f: f, current_pick: @current_pick}%>
 	  </td>
 	</tr>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+  <% if user_signed_in? %>
+    <%= f.submit "Lock Pick", disabled: @current_pick.present? %>
+  <% end %>
+<% end %>
 <p>Last Updated: <%= @fixture&.updated_at %></p>

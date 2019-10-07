@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
   resources :users, only: [:edit, :show, :update]
   resources :gameweeks, only: [:index]
-  resources :fixtures, only: [:index]
+  resources :fixtures, only: [:index, :create]
   get 'standings', to: 'standings#index'
 end
