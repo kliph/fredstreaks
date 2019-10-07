@@ -13,8 +13,9 @@ class FixturesController < ApplicationController
   def create
     pick = params.permit(:current_pick).fetch(:current_pick)
     @user = current_user
-    render 'index' unless pick
-    if @user.update(current_pick: pick)
+    return head(:forbidden) if @user.current_pick.present?
+
+    if pick.present? && @user.update(current_pick: pick)
       redirect_to fixtures_path
     else
       render 'index'

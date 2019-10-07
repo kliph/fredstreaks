@@ -1,6 +1,31 @@
 require 'rails_helper'
 
 RSpec.describe FixturesController, type: :controller do
+  include Devise::Test::ControllerHelpers
+
+  describe '#create' do
+    let(:user) { create(:user, current_pick: nil) }
+    let(:pick) { 'Manchester United FC' }
+    before { sign_in user }
+
+    it 'creates the pick' do
+      post :create, params: { current_pick: pick }
+      expect(user.reload.current_pick).to eq(pick)
+    end
+
+    it 'handles submitting without a pick' do
+      post :create, params: { current_pick: nil }
+      expect(user.reload.current_pick).to be_nil
+    end
+
+    it 'returns 403 forbidden if the user already has a pick' do
+      user.current_pick = pick
+      user.save
+      post :create, params: { current_pick: 'Everton FC' }
+      expect(response).to have_http_status(:forbidden)
+    end
+  end
+
   describe '#index', vcr: { record: :new_episodes } do
     let!(:gameweek) { create :gameweek }
     let!(:user) { create :user }
