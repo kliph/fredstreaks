@@ -12,18 +12,26 @@
     </th>
   </thead>
   <tbody>
-    <% @fixture&.matches.each do |match| %>
-      <tr>
-	<td>
-	  <%= match['home_team']['name'] %>
-	</td>
-	<td>
-	  vs
-	</td>
-	<td>
-	  <%= match['away_team']['name'] %>
-	</td>
-      </tr>
+    <%= form_with model: current_user do |f| %>
+      <% @fixture&.matches.each do |match| %>
+	<tr>
+	  <td>
+	    <%= f.label "current_pick_#{match['home_team']['name'].parameterize.underscore}".to_sym do %>
+	      <%= f.radio_button(:current_pick, match['home_team']['name']) %>
+	      <%= match['home_team']['name'] %>
+	    <% end %>
+	  </td>
+	  <td>
+	    vs
+	  </td>
+	  <td>
+	    <%= f.label "current_pick_#{match['away_team']['name'].parameterize.underscore}".to_sym do %>
+	      <%= f.radio_button(:current_pick, match['away_team']['name']) %>
+	      <%= match['away_team']['name'] %>
+	    <% end %>
+	  </td>
+	</tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
