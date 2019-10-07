@@ -36,6 +36,8 @@ gem 'material_design_lite-sass', '~> 1.3', '>= 1.3.0.1'
 
 gem 'nokogiri', '>= 1.10.4'
 
+gem 'rubyzip', '>= 1.3.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
