@@ -2,6 +2,7 @@
 module FixturesService
   URL = 'http://api.football-data.org/v2/competitions/2021/matches'.freeze
   FINISHED_STATUSES = %w[FINISHED CANCELED POSTPONED].freeze
+  STARTED_STATUSES = %w[FINISHED IN_PLAY PAUSED].freeze
 
   def self.fetch_fixtures(gameweek)
     response = Faraday.get(
@@ -18,6 +19,11 @@ module FixturesService
     statuses.present? && statuses.all? do |status|
       matches_at_least_one(status, FINISHED_STATUSES)
     end
+  end
+
+  def self.any_started?(matches)
+    statuses = matches.pluck('status')
+    statuses.present? && statuses.any? { |status| matches_at_least_one(status, STARTED_STATUSES) }
   end
 
   def self.save_fixture_if_updated!(matches)

@@ -61,6 +61,20 @@ RSpec.describe FixturesService do
     end
   end
 
+  describe '#any_started?' do
+    let(:unstarted_matches) { create(:unstarted_fixture).matches }
+    let(:one_started_matches) { create(:one_started_fixture).matches }
+
+    it 'returns true when any of the matches are in started-like states' do
+      expect(FixturesService.any_started?(matches)).to be true
+      expect(FixturesService.any_started?(one_started_matches)).to be true
+    end
+
+    it 'returns false when matches are not in started-like states' do
+      expect(FixturesService.any_started?(unstarted_matches)).to be false
+    end
+  end
+
   describe '#score_finished_gameweek!' do
     let(:winning_pick) { 'Arsenal FC' }
     let!(:user) { create :user, current_pick: winning_pick }
