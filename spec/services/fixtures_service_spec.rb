@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe FixturesService do
-  let!(:fixture) { create :fixture }
+  let!(:fixture) { create :fixture, updated_at: Time.now - 1.day }
 
   let(:matches) { fixture.matches }
 
@@ -36,13 +36,13 @@ RSpec.describe FixturesService do
     it 'does not update the fixture when the fixture is not updated' do
       last_updated_at = fixture.updated_at
       FixturesService.save_fixture_if_updated!(matches)
-      expect(fixture.reload.updated_at).to eq last_updated_at
+      expect(fixture.reload.updated_at.to_i).to eq(last_updated_at.to_i)
     end
 
     it 'updates the fixture when the fixture is updated' do
       last_updated_at = fixture.updated_at
       FixturesService.save_fixture_if_updated!(postponed_matches)
-      expect(fixture.reload.updated_at).not_to eq last_updated_at
+      expect(fixture.reload.updated_at.to_i).not_to eq(last_updated_at.to_i)
     end
   end
 
