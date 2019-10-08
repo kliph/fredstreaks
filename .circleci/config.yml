@@ -23,20 +23,10 @@ jobs:
     steps:
       - checkout
 
-      - restore_cache:
-          keys:
-            - v1-bundler-{{ checksum "/usr/local/bin/bundler" }}
-
       - run:
-          name: install bundler
+          name: update bundler
           command: |
             gem update bundler
-
-      - save_cache:
-          paths:
-            - /usr/local/bin/bundler
-          key: v1-bundler-{{ checksum "/usr/local/bin/bundler" }}
-
 
       # Download and cache dependencies
       - restore_cache:
