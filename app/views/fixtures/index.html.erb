@@ -1,7 +1,7 @@
 <h4>Fixtures</h4>
 <h5>Gameweek: <%= @week %></h5>
 <%= form_with local: true do |f| %>
-  <table>
+  <table class="fixtures">
     <thead>
       <th>
 	Home
@@ -29,7 +29,12 @@
     </tbody>
   </table>
   <% if user_signed_in? %>
-    <%= f.submit "Lock Pick", disabled: @current_pick.present? %>
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--2-col"></div>
+      <div class="mdl-cell mdl-cell--8-col">
+	<%= f.submit "Lock Pick", disabled: @current_pick.present?, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--full-width mdl-js-ripple-effect" %>
+      </div>
+    </div>
   <% end %>
 <% end %>
 <p>Last Updated: <%= @fixture&.updated_at %></p>

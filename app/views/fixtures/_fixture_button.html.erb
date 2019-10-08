@@ -1,4 +1,4 @@
-<%= f.label "current_pick_#{team.parameterize.underscore}".to_sym do %>
+<%= f.label "current_pick_#{team.parameterize.underscore}".to_sym, class: 'pickable' do %>
   <%= f.radio_button :current_pick, team, id: "current_pick_#{team.parameterize.underscore}", checked: current_pick == team, disabled: current_pick.present? && current_pick != team, required: true %>
   <%= team %>
 <% end %>
