@@ -1,4 +1,6 @@
-<%= f.label "current_pick_#{team.parameterize.underscore}".to_sym, class: 'pickable' do %>
-  <%= f.radio_button :current_pick, team, id: "current_pick_#{team.parameterize.underscore}", checked: current_pick == team, disabled: current_pick.present? && current_pick != team, required: true %>
-  <%= team %>
+<%= f.radio_button :current_pick, team, id: "current_pick_#{team.parameterize.underscore}", checked: current_pick == team, disabled: current_pick.present? && current_pick != team, required: true %>
+<% if current_pick.present?  %>
+  <%= f.label "current_pick_#{team.parameterize.underscore}".to_sym, team, class: "#{current_pick == team ? 'locked' : ''}" %>
+<% else %>
+  <%= f.label "current_pick_#{team.parameterize.underscore}".to_sym, team, class: 'pickable' %>
 <% end %>

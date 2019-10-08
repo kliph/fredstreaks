@@ -21,8 +21,10 @@
   - [X] Save them if they are updated
   - [X] Show last updated timestamp on the page
   - [X] Score fixtures when all games are finished for the week
-  - [ ] Debug setting that prevents gameweeks from being incremented
-  - [ ] UI and form for picking
+  - [ ] Add debug setting that prevents gameweeks from being incremented
+  - [X] UI and form for picking
+  - [ ] Display scores once the games have started
+  - [ ] Disable picks once the games have started
 - [X] Track gameweek as its own column on the Gameweek
 result?
 - [ ] Links to individual gameweeks (showing their fixtures)
