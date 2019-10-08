@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe FixturesService do
-  let!(:fixture) { create :fixture, updated_at: Time.now - 1.day }
+  let!(:fixture) { create :fixture, updated_at: Time.current - 1.day }
 
   let(:matches) { fixture.matches }
 
