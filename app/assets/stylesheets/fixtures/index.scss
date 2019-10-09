@@ -1,0 +1,49 @@
+@import "colors";
+
+.mdl-button--full-width {
+  width: 100%;
+}
+
+input[type="radio"] {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+label {
+  padding: 0.5em;
+  display: block;
+  border: 2px solid rgba(0, 0, 0, 0);
+}
+
+
+:checked + label.pickable {
+  &:hover {
+    background-color: initial;
+  }
+
+  border: 2px solid $pank;
+}
+
+.pickable:hover {
+  background-color: $pank;
+}
+
+.locked {
+  border: 2px solid $grun;
+}
+
+.fixtures {
+  width: auto;
+
+  th & {
+    width: 33%;
+    padding-bottom: 1em;
+  }
+}

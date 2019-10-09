@@ -1,291 +1,49 @@
 require 'rails_helper'
 
 RSpec.describe FixturesService do
-  let!(:gameweek) { create :gameweek }
+  let!(:fixture) { create :fixture, updated_at: Time.current - 1.day }
 
-  let(:matches) do
-    [{ id: 264_341,
-       season: { id: 468,
-                 start_date: '2019-08-09',
-                 end_date: '2020-05-17',
-                 current_matchday: 5 },
-       utc_date: '2019-08-09T19:00:00Z',
-       status: 'FINISHED',
-       matchday: 1,
-       stage: 'REGULAR_SEASON',
-       group: 'Regular Season',
-       last_updated: '2019-08-10T06:35:46Z',
-       score: { winner: 'HOME_TEAM',
-                duration: 'REGULAR',
-                full_time: { home_team: 4, away_team: 1 },
-                half_time: { home_team: 4, away_team: 0 },
-                extra_time: { home_team: nil, away_team: nil },
-                penalties: { home_team: nil, away_team: nil } },
-       home_team: { id: 64, name: 'Liverpool FC' },
-       away_team: { id: 68, name: 'Norwich City FC' },
-       referees: [{ id: 11_605, name: 'Michael Oliver', nationality: nil },
-                  { id: 11_564, name: 'Stuart Burt', nationality: nil },
-                  { id: 11_488, name: 'Simon Bennett', nationality: nil },
-                  { id: 11_503, name: 'Graham Scott', nationality: nil },
-                  { id: 11_610,
-                    name: 'Andre Marriner',
-                    nationality: nil }] },
-     { id: 264_342,
-       season: { id: 468,
-                 start_date: '2019-08-09',
-                 end_date: '2020-05-17',
-                 current_matchday: 5 },
-       utc_date: '2019-08-10T11:30:00Z',
-       status: 'FINISHED',
-       matchday: 1,
-       stage: 'REGULAR_SEASON',
-       group: 'Regular Season',
-       last_updated: '2019-08-10T17:52:43Z',
-       score: { winner: 'AWAY_TEAM',
-                duration: 'REGULAR',
-                full_time: { home_team: 0, away_team: 5 },
-                half_time: { home_team: 0, away_team: 1 },
-                extra_time: { home_team: nil, away_team: nil },
-                penalties: { home_team: nil, away_team: nil } },
-       home_team: { id: 563, name: 'West Ham United FC' },
-       away_team: { id: 65, name: 'Manchester City FC' },
-       referees: [{ id: 11_575, name: 'Mike Dean', nationality: nil },
-                  { id: 11_576, name: 'Darren Cann', nationality: nil },
-                  { id: 11_431,
-                    name: 'Daniel Robathan',
-                    nationality: nil },
-                  { id: 9382, name: 'Gavin Ward', nationality: nil },
-                  { id: 11_556, name: 'David Coote', nationality: nil }] },
-     { id: 264_344,
-       season: { id: 468,
-                 start_date: '2019-08-09',
-                 end_date: '2020-05-17',
-                 current_matchday: 5 },
-       utc_date: '2019-08-10T14:00:00Z',
-       status: 'FINISHED',
-       matchday: 1,
-       stage: 'REGULAR_SEASON',
-       group: 'Regular Season',
-       last_updated: '2019-08-10T22:13:59Z',
-       score: { winner: 'HOME_TEAM',
-                duration: 'REGULAR',
-                full_time: { home_team: 3, away_team: 0 },
-                half_time: { home_team: 0, away_team: 0 },
-                extra_time: { home_team: nil, away_team: nil },
-                penalties: { home_team: nil, away_team: nil } },
-       home_team: { id: 328, name: 'Burnley FC' },
-       away_team: { id: 340, name: 'Southampton FC' },
-       referees: [{ id: 11_503, name: 'Graham Scott', nationality: nil },
-                  { id: 11_424, name: 'Neil Davies', nationality: nil },
-                  { id: 11_437, name: 'Andy Garratt', nationality: nil },
-                  { id: 9381, name: 'Ross Joyce', nationality: nil },
-                  { id: 11_309, name: 'Peter Bankes', nationality: nil }] },
-     { id: 264_345,
-       season: { id: 468,
-                 start_date: '2019-08-09',
-                 end_date: '2020-05-17',
-                 current_matchday: 5 },
-       utc_date: '2019-08-10T14:00:00Z',
-       status: 'FINISHED',
-       matchday: 1,
-       stage: 'REGULAR_SEASON',
-       group: 'Regular Season',
-       last_updated: '2019-08-10T22:15:25Z',
-       score: { winner: 'DRAW',
-                duration: 'REGULAR',
-                full_time: { home_team: 0, away_team: 0 },
-                half_time: { home_team: 0, away_team: 0 },
-                extra_time: { home_team: nil, away_team: nil },
-                penalties: { home_team: nil, away_team: nil } },
-       home_team: { id: 354, name: 'Crystal Palace FC' },
-       away_team: { id: 62, name: 'Everton FC' },
-       referees: [{ id: 11_567, name: 'Jonathan Moss', nationality: nil },
-                  { id: 11_531, name: 'Marc Perry', nationality: nil },
-                  { id: 11_480, name: 'Eddie Smart', nationality: nil },
-                  { id: 11_536, name: 'Craig Hicks', nationality: nil },
-                  { id: 11_327, name: 'John Brooks', nationality: nil }] },
-     { id: 264_346,
-       season: { id: 468,
-                 start_date: '2019-08-09',
-                 end_date: '2020-05-17',
-                 current_matchday: 5 },
-       utc_date: '2019-08-10T14:00:00Z',
-       status: 'FINISHED',
-       matchday: 1,
-       stage: 'REGULAR_SEASON',
-       group: 'Regular Season',
-       last_updated: '2019-08-10T20:11:34Z',
-       score: { winner: 'AWAY_TEAM',
-                duration: 'REGULAR',
-                full_time: { home_team: 0, away_team: 3 },
-                half_time: { home_team: 0, away_team: 1 },
-                extra_time: { home_team: nil, away_team: nil },
-                penalties: { home_team: nil, away_team: nil } },
-       home_team: { id: 346, name: 'Watford FC' },
-       away_team: { id: 397, name: 'Brighton & Hove Albion FC' },
-       referees: [{ id: 11_585, name: 'Craig Pawson', nationality: nil },
-                  { id: 11_495, name: 'Ian Hussin', nationality: nil },
-                  { id: 11_586, name: 'Richard West', nationality: nil },
-                  { id: 11_492, name: 'Peter Wright', nationality: nil },
-                  { id: 11_423, name: 'Andy Madley', nationality: nil }] },
-     { id: 264_347,
-       season: { id: 468,
-                 start_date: '2019-08-09',
-                 end_date: '2020-05-17',
-                 current_matchday: 5 },
-       utc_date: '2019-08-10T14:00:00Z',
-       status: 'FINISHED',
-       matchday: 1,
-       stage: 'REGULAR_SEASON',
-       group: 'Regular Season',
-       last_updated: '2019-08-10T20:06:07Z',
-       score: { winner: 'DRAW',
-                duration: 'REGULAR',
-                full_time: { home_team: 1, away_team: 1 },
-                half_time: { home_team: 0, away_team: 0 },
-                extra_time: { home_team: nil, away_team: nil },
-                penalties: { home_team: nil, away_team: nil } },
-       home_team: { id: 1044, name: 'AFC Bournemouth' },
-       away_team: { id: 356, name: 'Sheffield United FC' },
-       referees: [{ id: 11_487, name: 'Kevin Friend', nationality: nil },
-                  { id: 11_444, name: 'Matthew Wilkes', nationality: nil },
-                  { id: 11_425,
-                    name: 'Nicholas Hopton',
-                    nationality: nil },
-                  { id: 11_497,
-                    name: 'Charles Breakspear',
-                    nationality: nil },
-                  { id: 11_479, name: 'Lee Mason', nationality: nil }] },
-     { id: 264_348,
-       season: { id: 468,
-                 start_date: '2019-08-09',
-                 end_date: '2020-05-17',
-                 current_matchday: 5 },
-       utc_date: '2019-08-10T16:30:00Z',
-       status: 'FINISHED',
-       matchday: 1,
-       stage: 'REGULAR_SEASON',
-       group: 'Regular Season',
-       last_updated: '2019-08-11T06:55:03Z',
-       score: { winner: 'HOME_TEAM',
-                duration: 'REGULAR',
-                full_time: { home_team: 3, away_team: 1 },
-                half_time: { home_team: 0, away_team: 1 },
-                extra_time: { home_team: nil, away_team: nil },
-                penalties: { home_team: nil, away_team: nil } },
-       home_team: { id: 73, name: 'Tottenham Hotspur FC' },
-       away_team: { id: 58, name: 'Aston Villa FC' },
-       referees: [{ id: 11_443, name: 'Chris Kavanagh', nationality: nil },
-                  { id: 11_438, name: 'Dan Cook', nationality: nil },
-                  { id: 98_555, name: nil, nationality: nil },
-                  { id: 11_396, name: 'Tim Robinson', nationality: nil },
-                  { id: 11_494,
-                    name: 'Stuart Attwell',
-                    nationality: nil }] },
-     { id: 264_343,
-       season: { id: 468,
-                 start_date: '2019-08-09',
-                 end_date: '2020-05-17',
-                 current_matchday: 5 },
-       utc_date: '2019-08-11T13:00:00Z',
-       status: 'FINISHED',
-       matchday: 1,
-       stage: 'REGULAR_SEASON',
-       group: 'Regular Season',
-       last_updated: '2019-08-12T10:45:05Z',
-       score: { winner: 'DRAW',
-                duration: 'REGULAR',
-                full_time: { home_team: 0, away_team: 0 },
-                half_time: { home_team: 0, away_team: 0 },
-                extra_time: { home_team: nil, away_team: nil },
-                penalties: { home_team: nil, away_team: nil } },
-       home_team: { id: 338, name: 'Leicester City FC' },
-       away_team: { id: 76, name: 'Wolverhampton Wanderers FC' },
-       referees: [{ id: 11_610, name: 'Andre Marriner', nationality: nil },
-                  { id: 11_611, name: 'Scott Ledger', nationality: nil },
-                  { id: 11_504, name: 'Simon Long', nationality: nil },
-                  { id: 11_423, name: 'Andy Madley', nationality: nil },
-                  { id: 11_567,
-                    name: 'Jonathan Moss',
-                    nationality: nil }] },
-     { id: 264_349,
-       season: { id: 468,
-                 start_date: '2019-08-09',
-                 end_date: '2020-05-17',
-                 current_matchday: 5 },
-       utc_date: '2019-08-11T13:00:00Z',
-       status: 'FINISHED',
-       matchday: 1,
-       stage: 'REGULAR_SEASON',
-       group: 'Regular Season',
-       last_updated: '2019-08-12T10:45:05Z',
-       score: { winner: 'AWAY_TEAM',
-                duration: 'REGULAR',
-                full_time: { home_team: 0, away_team: 1 },
-                half_time: { home_team: 0, away_team: 0 },
-                extra_time: { home_team: nil, away_team: nil },
-                penalties: { home_team: nil, away_team: nil } },
-       home_team: { id: 67, name: 'Newcastle United FC' },
-       away_team: { id: 57, name: 'Arsenal FC' },
-       referees: [{ id: 11_551,
-                    name: 'Martin Atkinson',
-                    nationality: nil },
-                  { id: 11_530, name: 'Lee Betts', nationality: nil },
-                  { id: 11_606,
-                    name: 'Constantine Hatzidakis',
-                    nationality: nil },
-                  { id: 11_469, name: 'Darren England', nationality: nil },
-                  { id: 11_556, name: 'David Coote', nationality: nil }] },
-     { id: 264_350,
-       season: { id: 468,
-                 start_date: '2019-08-09',
-                 end_date: '2020-05-17',
-                 current_matchday: 5 },
-       utc_date: '2019-08-11T15:30:00Z',
-       status: 'FINISHED',
-       matchday: 1,
-       stage: 'REGULAR_SEASON',
-       group: 'Regular Season',
-       last_updated: '2019-08-12T10:50:07Z',
-       score: { winner: 'HOME_TEAM',
-                duration: 'REGULAR',
-                full_time: { home_team: 4, away_team: 0 },
-                half_time: { home_team: 1, away_team: 0 },
-                extra_time: { home_team: nil, away_team: nil },
-                penalties: { home_team: nil, away_team: nil } },
-       home_team: { id: 66, name: 'Manchester United FC' },
-       away_team: { id: 61, name: 'Chelsea FC' },
-       referees: [{ id: 11_580, name: 'Anthony Taylor', nationality: nil },
-                  { id: 11_581, name: 'Gary Beswick', nationality: nil },
-                  { id: 11_615, name: 'Adam Nunn', nationality: nil },
-                  { id: 11_479, name: 'Lee Mason', nationality: nil },
-                  { id: 11_494,
-                    name: 'Stuart Attwell',
-                    nationality: nil }] }]
-  end
+  let(:matches) { fixture.matches }
 
   let(:postponed_matches) do
     new_matches = matches.clone
-    new_matches[0] = matches[0].merge(status: 'POSTPONED')
+    new_matches[0] = matches[0].merge('status' => 'POSTPONED')
     new_matches
   end
 
   let(:unfinished_matches) do
     new_matches = matches.clone
-    new_matches[0] = matches[0].merge(status: 'SCHEDULED')
+    new_matches[0] = matches[0].merge('status' => 'SCHEDULED')
     new_matches
   end
 
   describe '#fetch_fixtures' do
-    it 'fetches data from the API', :vcr do
-      expect(FixturesService.fetch_fixtures).to eq(matches)
+    it 'fetches data from the API', vcr: { record: :new_episodes } do
+      expect(FixturesService.fetch_fixtures(1)).to eq(matches)
     end
   end
 
-  describe '#save_fixtures!' do
-    it 'does not update the fixture when the fixture is not updated'
+  describe '#save_fixture_if_updated!' do
+    describe 'with a new gameweek' do
+      it 'creates the fixture if there is not one already in the database' do
+        gameweek = create :gameweek
+        FixturesService.save_fixture_if_updated!(matches)
+        expect(Fixture.last.gameweek).to eq gameweek
+        expect(Fixture.last.matches).to eq matches
+      end
+    end
 
-    it 'updates the fixture when the fixture is updated'
+    it 'does not update the fixture when the fixture is not updated' do
+      last_updated_at = fixture.updated_at
+      FixturesService.save_fixture_if_updated!(matches)
+      expect(fixture.reload.updated_at.to_i).to eq(last_updated_at.to_i)
+    end
+
+    it 'updates the fixture when the fixture is updated' do
+      last_updated_at = fixture.updated_at
+      FixturesService.save_fixture_if_updated!(postponed_matches)
+      expect(fixture.reload.updated_at.to_i).not_to eq(last_updated_at.to_i)
+    end
   end
 
   describe '#all_finished?' do
@@ -296,6 +54,114 @@ RSpec.describe FixturesService do
 
     it 'returns false when all fixtures are not finished' do
       expect(FixturesService.all_finished?(unfinished_matches)).to be false
+    end
+
+    it 'returns false when it receives and empty array' do
+      expect(FixturesService.all_finished?([])).to be false
+    end
+  end
+
+  describe '#any_started?' do
+    let(:unstarted_matches) { create(:unstarted_fixture).matches }
+    let(:one_started_matches) { create(:one_started_fixture).matches }
+
+    it 'returns true when any of the matches are in started-like states' do
+      expect(FixturesService.any_started?(matches)).to be true
+      expect(FixturesService.any_started?(one_started_matches)).to be true
+    end
+
+    it 'returns false when matches are not in started-like states' do
+      expect(FixturesService.any_started?(unstarted_matches)).to be false
+    end
+  end
+
+  describe '#score_finished_gameweek!' do
+    let(:winning_pick) { 'Arsenal FC' }
+    let!(:user) { create :user, current_pick: winning_pick }
+    let(:losing_pick) { 'Norwich City FC' }
+    let!(:user_with_losing_pick) { create :user, current_pick: losing_pick }
+    let(:date) { Date.parse(matches.last.fetch('utc_date')) }
+    let(:gameweek) { create :gameweek }
+
+    it 'creates a new result' do
+      expect { FixturesService.score_finished_gameweek!(matches: matches, gameweek: gameweek, user: user, date: date) }.to change { Result.count }.by(1)
+    end
+
+    describe 'with a winning pick' do
+      it "updates the User's score" do
+        expect { FixturesService.score_finished_gameweek!(matches: matches, gameweek: gameweek, user: user, date: date) }.to change { user.points }.by(1)
+      end
+
+      it "updates the User's current streak" do
+        expect { FixturesService.score_finished_gameweek!(matches: matches, gameweek: gameweek, user: user, date: date) }.to change { user.current_streak }.by(1)
+      end
+
+      it "resets the User's current pick" do
+        FixturesService.score_finished_gameweek!(matches: matches, gameweek: gameweek, user: user, date: date)
+        expect(user.reload.current_pick).to be_nil
+      end
+
+      it 'creates a Result with the proper data' do
+        FixturesService.score_finished_gameweek!(matches: matches, gameweek: gameweek, user: user, date: date)
+        result = Result.find_by(date: date, user: user, gameweek: gameweek)
+        expect(result.points).to eq 1
+        expect(result.pick).to eq winning_pick
+      end
+    end
+
+    describe 'with a losing pick' do
+      it "updates the User's score" do
+        expect { FixturesService.score_finished_gameweek!(matches: matches, gameweek: gameweek, user: user_with_losing_pick, date: date) }.to change { user_with_losing_pick.points }.by(0)
+      end
+
+      it "updates the User's current streak" do
+        expect { FixturesService.score_finished_gameweek!(matches: matches, gameweek: gameweek, user: user_with_losing_pick, date: date) }.to change { user_with_losing_pick.current_streak }.by(0)
+      end
+
+      it "resets the User's current pick" do
+        FixturesService.score_finished_gameweek!(matches: matches, gameweek: gameweek, user: user_with_losing_pick, date: date)
+        expect(user_with_losing_pick.reload.current_pick).to be_nil
+      end
+
+      it 'creates a Result with the proper data' do
+        FixturesService.score_finished_gameweek!(matches: matches, gameweek: gameweek, user: user_with_losing_pick, date: date)
+        result = Result.find_by(date: date, user: user_with_losing_pick, gameweek: gameweek)
+        expect(result.points).to eq 0
+        expect(result.pick).to eq losing_pick
+      end
+    end
+  end
+
+  describe '#increment_current_gameweek!' do
+    let!(:gameweek) { create :gameweek, week: 99 }
+    it 'increments the gameweek' do
+      expect { FixturesService.increment_gameweek!(gameweek) }.to change { Gameweek.count }.by(1)
+      expect(Gameweek.last.week).to eq(100)
+    end
+  end
+
+  describe '#score_all_picks_and_increment_gameweek!' do
+    let!(:user) { create :user }
+    let(:matches) { create(:fixture).matches }
+    let(:gameweek) { create :gameweek }
+    let(:date) { Date.parse(matches.last.fetch('utc_date')) }
+    let(:params) do
+      {
+        matches: matches,
+        gameweek: gameweek
+      }
+    end
+
+    it 'calls score_finished_gameweek! with the appropriate data' do
+      allow(FixturesService).to receive(:score_finished_gameweek!)
+      FixturesService.score_all_picks_and_increment_gameweek!(params)
+      expect(FixturesService).to have_received(:score_finished_gameweek!)
+    end
+
+    it 'calls increment_gameweek!' do
+      allow(FixturesService).to receive(:increment_gameweek!)
+      FixturesService.score_all_picks_and_increment_gameweek!(params)
+      expect(FixturesService).to have_received(:increment_gameweek!)
     end
   end
 end

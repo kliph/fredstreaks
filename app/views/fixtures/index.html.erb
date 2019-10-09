@@ -1,0 +1,40 @@
+<h4>Fixtures</h4>
+<h5>Gameweek: <%= @week %></h5>
+<%= form_with local: true do |f| %>
+  <table class="fixtures">
+    <thead>
+      <th>
+	Home
+      </th>
+      <th>
+      </th>
+      <th>
+	Away
+      </th>
+    </thead>
+    <tbody>
+      <% @fixture&.matches.each do |match| %>
+	<tr>
+	  <td>
+	    <%= render partial: "fixture_button", locals: {team: match['home_team']['name'], f: f, current_pick: @current_pick}%>
+	  </td>
+	  <td>
+	    vs
+	  </td>
+	  <td>
+	    <%= render partial: "fixture_button", locals: {team: match['away_team']['name'], f: f, current_pick: @current_pick}%>
+	  </td>
+	</tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% if user_signed_in? %>
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--2-col"></div>
+      <div class="mdl-cell mdl-cell--8-col">
+	<%= f.submit "Lock Pick", disabled: @current_pick.present? || FixturesService.any_started?(@fixture&.matches), class: "mdl-button mdl-js-button mdl-button--raised mdl-button--full-width mdl-js-ripple-effect" %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+<p>Last Updated: <%= @fixture&.updated_at %></p>

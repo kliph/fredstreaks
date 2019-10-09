@@ -16,13 +16,20 @@
 - [X] Dynamic Points and Streak and Rank calculation for standings
 - [X] Don't allow users to see picks if they have not already made their pick
 - [X] Main page controller spec
-- [ ] Fixtures
-  - [ ] Fetch fixtures
-  - [ ] Save them if they are updated
-  - [ ] Show last updated timestamp on the page
-  - [ ] Score fixtures when all games are finished for the week
+- [-] Fixtures
+  - [X] Fetch fixtures
+  - [X] Save them if they are updated
+  - [X] Show last updated timestamp on the page
+  - [X] Score fixtures when all games are finished for the week
+  - [ ] Add debug setting that prevents gameweeks from being incremented
+  - [X] UI and form for picking
+  - [ ] Display scores once the games have started
+  - [X] Disable picks once the games have started
+- [X] Track gameweek as its own column on the Gameweek
+result?
 - [ ] Links to individual gameweeks (showing their fixtures)
 - [ ] Administrative controls for the gameweeks
+  - [ ] Don't update a fixture if it's been overridden
 - [ ] HTTPS
 - [ ] Handle smaller screen sizes
   - [ ] test on phone
