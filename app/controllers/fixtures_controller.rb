@@ -11,9 +11,10 @@ class FixturesController < ApplicationController
   end
 
   def create
+    matches = FixturesService.fetch_fixtures(Gameweek.last.week)
     pick = params.permit(:current_pick).fetch(:current_pick)
     @user = current_user
-    return head(:forbidden) if @user.current_pick.present?
+    return head(:forbidden) if @user.current_pick.present? || FixturesService.any_started?(matches)
 
     if pick.present? && @user.update(current_pick: pick)
       redirect_to fixtures_path

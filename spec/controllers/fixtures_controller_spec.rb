@@ -3,10 +3,25 @@ require 'rails_helper'
 RSpec.describe FixturesController, type: :controller do
   include Devise::Test::ControllerHelpers
 
+  let!(:gameweek) { create :gameweek }
+  let(:fixture) { create :fixture }
+  let(:started_fixture) { create :one_started_fixture }
+  let(:unstarted_fixture) { create :unstarted_fixture }
+
+  let(:unfinished_matches) do
+    new_matches = fixture.matches.clone
+    new_matches[0] = fixture.matches[0].merge('status' => 'SCHEDULED')
+    new_matches
+  end
+
   describe '#create' do
     let(:user) { create(:user, current_pick: nil) }
     let(:pick) { 'Manchester United FC' }
-    before { sign_in user }
+
+    before :each do
+      sign_in user
+      allow(FixturesService).to receive(:fetch_fixtures).and_return(unstarted_fixture.matches)
+    end
 
     it 'creates the pick' do
       post :create, params: { current_pick: pick }
@@ -24,18 +39,16 @@ RSpec.describe FixturesController, type: :controller do
       post :create, params: { current_pick: 'Everton FC' }
       expect(response).to have_http_status(:forbidden)
     end
+
+    it 'returns 403 forbidden if the fixture is started' do
+      allow(FixturesService).to receive(:fetch_fixtures).and_return(started_fixture.matches)
+      post :create, params: { current_pick: 'Everton FC' }
+      expect(response).to have_http_status(:forbidden)
+    end
   end
 
-  describe '#index', vcr: { record: :new_episodes } do
-    let!(:gameweek) { create :gameweek }
+  describe '#index' do
     let!(:user) { create :user }
-    let(:fixture) { create :fixture }
-
-    let(:unfinished_matches) do
-      new_matches = fixture.matches.clone
-      new_matches[0] = fixture.matches[0].merge('status' => 'SCHEDULED')
-      new_matches
-    end
 
     describe 'with finished matches' do
       before :each do
