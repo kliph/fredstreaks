@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#google_auth'
   get 'auth/failure', to: redirect('/')
   resources :users, only: [:edit, :show, :update]
-  resources :gameweeks, only: [:index]
+  resources :gameweeks, only: [:index, :show]
   resources :fixtures, only: [:index, :create]
   get 'standings', to: 'standings#index'
 end
