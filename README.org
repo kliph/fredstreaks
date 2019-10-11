@@ -27,7 +27,7 @@
   - [X] Disable picks once the games have started
 - [X] Track gameweek as its own column on the Gameweek
 result?
-- [ ] Links to individual gameweeks (showing their fixtures)
+- [X] Links to individual gameweeks (showing their fixtures)
 - [ ] Administrative controls for the gameweeks
   - [ ] Don't update a fixture if it's been overridden
 - [ ] HTTPS

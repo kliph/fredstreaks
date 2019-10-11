@@ -1,0 +1,7 @@
+<div class="match__team mdl-grid">
+  <div class="match__team-side mdl-cell mdl-cell--2-col"><%= team_key.humanize.titlecase %></div>
+  <div class="match__team-name mdl-cell mdl-cell--4-col"><%= match[team_key]['name'] %></div>
+  <div class="match__team-score mdl-cell mdl-cell--2-col">
+   <%= match['score']['full_time'][team_key]%>
+  </div>
+</div>

@@ -1,26 +1,20 @@
 <h4>Gameweek: <%= @gameweek.week %></h4>
 <div class="gameweek">
   <% @fixture.matches.each do |match| %>
-    <div>
-      <div>
-	<div>
+    <div class="match mdl-grid">
+      <div class="mdl-cell mdl-cell--1-col"></div>
+      <div class="match__time mdl-cell mdl-cell--middle mdl-cell--1-col">
+	<div class="match__date">
 	  <%= match['utc_date'].to_date %>
 	</div>
-	<div>
+	<div class="match__status">
 	  <%= match['status'] %>
 	</div>
       </div>
-      <div>
-	Home Team: <%= match['home_team']['name'] %>
-      </div>
-      <div>
-	Score: <%= match['score']['full_time']['home_team']%>
-      </div>
-      <div>
-	Away Team: <%= match['away_team']['name'] %>
-      </div>
-      <div>
-	Score: <%= match['score']['full_time']['away_team']%>
+      <div class="mdl-cell mdl-cell--1-col"></div>
+      <div class="match__teams mdl-cell mdl-cell--5-col">
+	<%= render partial: 'match_team', locals: {match: match, team_key: 'home_team'}%>
+	<%= render partial: 'match_team', locals: {match: match, team_key: 'away_team'}%>
       </div>
     </div>
   <% end %>
